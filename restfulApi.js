@@ -1,10 +1,10 @@
 const serverURL = "https://alluring-thunder-archaeology.glitch.me/movies";
-//
-// fetch(serverURL)
-//     .then(res => res.json())
-//     .then(data => console.log(data))
-//
-//
+
+fetch(serverURL)
+    .then(res => res.json())
+    .then(data => console.log(data))
+
+
 
 const reviewObj = {
     restaurant_id: 1,
