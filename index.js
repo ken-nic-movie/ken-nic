@@ -1,6 +1,6 @@
 "use strict";
 
-const ul = document.querySelector('#list-group');
+// const ul = document.querySelector('#list-group');
 
 function fetchData() {
     fetch("https://alluring-thunder-archaeology.glitch.me/movies").then(response => {
@@ -15,7 +15,7 @@ function fetchData() {
             $("#movieResult").append(
                 //const card =
 
-                `<div class="card">
+                `<div class="card" id="full-card">
             <div id="movie" class="card-header">${movie.title}</div>
             <div class="card-body">
                 <div class="text-center">
@@ -32,8 +32,8 @@ function fetchData() {
                     <li class="list-item" id="year">${movie.year}</li>
                 </ul>
                 <div>
-                <button id="editBtn">Edit</button>
-                <button id="deleteBtn">Delete</button>
+                <button class="editBtn" data-id=${movie.id}>Edit</button>
+                <input type="button" value="Delete" onclick="deleteCard()"/>
                 </div>
             </div>
         </div>`)
@@ -43,6 +43,14 @@ function fetchData() {
         console.log(error);
     })
 }
+
+function deleteCard() {
+    var e = document.getElementById('full-card');
+    e.parentNode.removeChild(e);
+    return false;
+}
+
+
 
 
 // ul.addEventListener('click', (event) => {
