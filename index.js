@@ -32,8 +32,9 @@ function fetchData() {
                     <li class="list-item" id="year">${movie.year}</li>
                 </ul>
                 <div>
-                <button class="editBtn" data-id=${movie.id}>Edit</button>
+                <button type="button" value="Edit">Edit</button>
                 <input type="button" value="Delete" onclick="deleteCard()"/>
+                <button type="button" value="submit">Save</button>
                 </div>
             </div>
         </div>`)
@@ -45,10 +46,25 @@ function fetchData() {
 }
 
 function deleteCard() {
-    var e = document.getElementById('full-card');
-    e.parentNode.removeChild(e);
+    let d = document.getElementById('full-card');
+    d.parentNode.removeChild(d);
     return false;
 }
+
+    const editButton = document.getElementById('edit-button');
+    const saveEdit = document.getElementById('save-edits');
+    const listGroup = document.getElementById('list-group')
+
+
+editButton.addEventListener("click", function() {
+    listGroup.contentEditable = true;
+
+} );
+
+saveEdit.addEventListener("click", function() {
+    listGroup.contentEditable = false;
+
+} );
 
 
 
