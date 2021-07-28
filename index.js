@@ -44,27 +44,27 @@ function fetchData() {
         console.log(error);
     })
 }
-
-function deleteCard() {
-    let d = document.getElementById('full-card');
-    d.parentNode.removeChild(d);
-    return false;
-}
-
-    const editButton = document.getElementById('edit-button');
-    const saveEdit = document.getElementById('save-edits');
-    const listGroup = document.getElementById('list-group')
-
-
-editButton.addEventListener("click", function() {
-    listGroup.contentEditable = true;
-
-} );
-
-saveEdit.addEventListener("click", function() {
-    listGroup.contentEditable = false;
-
-} );
+//
+// function deleteCard() {
+//     let d = document.getElementById('full-card');
+//     d.parentNode.removeChild(d);
+//     return false;
+// }
+//
+//     const editButton = document.getElementById('edit-button');
+//     const saveEdit = document.getElementById('save-edits');
+//     const listGroup = document.getElementById('list-group')
+//
+//
+// editButton.addEventListener("click", function() {
+//     listGroup.contentEditable = true;
+//
+// } );
+//
+// saveEdit.addEventListener("click", function() {
+//     listGroup.contentEditable = false;
+//
+// } );
 
 
 
