@@ -1,6 +1,6 @@
 "use strict";
 
-// const ul = document.querySelector('#list-group');
+const url = "https://alluring-thunder-archaeology.glitch.me/movies";
 
 function fetchData() {
     fetch("https://alluring-thunder-archaeology.glitch.me/movies").then(response => {
@@ -11,11 +11,12 @@ function fetchData() {
         return response.json();
     }).then(movies => {
         console.log(movies);
+        $("#movieResult").empty();
         const html = movies.map(movie => {
             $("#movieResult").append(
                 //const card =
 
-                `<div class="card" id="full-card">
+                `<div class="card" id="full-card" xmlns="http://www.w3.org/1999/html">
             <div id="movie" class="card-header">${movie.title}</div>
             <div class="card-body">
                 <div class="text-center">
@@ -33,24 +34,68 @@ function fetchData() {
                 </ul>
                 <div>
                 <button type="button" value="Edit">Edit</button>
-                <input type="button" value="Delete" onclick="deleteCard()"/>
+                <button type="button" class="Delete" data-id=${movie.id}>Delete</button>
                 <button type="button" value="submit">Save</button>
                 </div>
             </div>
         </div>`)
         })
         console.log(html);
+        addEventListeners();
     }).catch(error => {
         console.log(error);
     })
 }
 
-//
+
+fetchData();
+
+function AJAX(url, method = "GET", data) {
+    const options = {
+        method: method,
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    };
+    return fetch(url, options)
+        .then(res => res.json())
+        .then(responseData => responseData)
+        .catch(err => err)
+}
+
+function deleteText(id){
+    AJAX(url + "/" + id, "DELETE")
+        .then(responseData => responseData)
+}
+    // deleteText(5)
+
+
+function addEventListeners() {
+    $('.Delete').click(function () {
+        const id = $(this).attr("data-id")
+        deleteText(id);
+        fetchData();
+    })
+}
+
+function addMovie() {
+    AJAX(url, "POST", {
+        title:"Batman",
+        rating:"5"
+    })
+        .then(responseData => responseData)
+
+}
+        addMovie();
+
+
 // function deleteCard() {
 //     let d = document.getElementById('full-card');
 //     d.parentNode.removeChild(d);
 //     return false;
 // }
+
 //
 //     const editButton = document.getElementById('edit-button');
 //     const saveEdit = document.getElementById('save-edits');
@@ -71,5 +116,3 @@ function fetchData() {
 
 
 
-
-fetchData();
