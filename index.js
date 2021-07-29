@@ -1,7 +1,11 @@
 "use strict";
 
 const url = "https://alluring-thunder-archaeology.glitch.me/movies";
-
+function sleeper(ms) {
+    return function (x) {
+        return new Promise(resolve => setTimeout(() => resolve(x), ms));
+    }
+};
 function fetchData() {
     fetch("https://alluring-thunder-archaeology.glitch.me/movies").then(response => {
         console.log(response);
@@ -9,7 +13,8 @@ function fetchData() {
             throw Error("ERROR");
         }
         return response.json();
-    }).then(movies => {
+    }).then(sleeper(500))
+        .then(movies => {
         console.log(movies);
         $("#movieResult").empty();
         const html = movies.map(movie => {
