@@ -25,10 +25,35 @@
 </div>
 
 
+<form>
+    <h4 class="editHeader">Edit Entries</h4>
+    <div id="moviesToEdit">
+        <select class="Movies">
+            <option value="">Movie Title</option>
+        </select>
+    </div>
+    <label class="yearEdit" style="color: #FFFFFF">Movie Year</label>
+    <input class="yearEdit">
+    <label class="ratingEdit" style="color: #FFFFFF">Movie Rating</label>
+    <select class="ratingEdit" id="newRating">
+        <option value="5">5</option>
+        <option value="4">4</option>
+        <option value="3">3</option>
+        <option value="2">2</option>
+        <option value="1">1</option>
+    </select>
+    <textarea class="plotEdit" rows="5" cols="50"></textarea>
+    <button id="editBtn" type="button">Submit Changes</button>
+</form>
+
 <script src="index.js"></script>
 <script src="./js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
+<script>
+    $(window).on("load", function() {
+        $("#loading-image").fadeOut("slow");
+    });
+</script>
 
 </body>
 </html>

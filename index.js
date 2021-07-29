@@ -92,7 +92,39 @@ function addMovie() {
         .then(responseData => responseData)
 
 }
-        addMovie();
+     //   addMovie();
+
+function editMovies () {
+    AJAX(url).then(function (data) {
+        let formHTML = `<select id="movieEdit" disable selected value>`
+        data.map(function(movie) {
+            formHTML += `<option value="${movie.id}">${movie.title}</option>`
+        })
+        formHTML += `<option hidden disabled selected value> Select a title </option>`
+        formHTML += `</select>`
+        $('#moviesToEdit').html(formHTML)
+    })
+}
+editMovies();
+
+$("#editBtn").on("click", function () {
+    let movieEdits = {};
+    movieEdits.id = editedMovieID,
+        movieEdits.title = $("#movieEdit option:selected").text(),
+        movieEdits.year = $(".yearEdit").val(),
+        movieEdits.rating = $(".ratingEdit").val(),
+        movieEdits.plot = $(".plotEdit").val()
+
+    fetch(url + "/" + editedMovieID, {
+        method: "PUT",
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(movieEdits)
+    }).then(fetchData).then(editMovies)
+})
+let editedMovieID = 0
+
 
 
 // function deleteCard() {
